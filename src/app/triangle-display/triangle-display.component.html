@@ -1,0 +1,17 @@
+<div style="background-color: lightgreen;">
+  <svg height="1000" width="1000">
+    <rect height="1000" width="1000" style="fill:lightblue; stroke-width:3;stroke:rgb(0,0,0)" />
+    <g (click)="clickTriangle()" (mousedown)="mousedown(0, $event)">
+      <polygon id="triangle" points="250,750 500,250 750,750" style="fill:pink;stroke:black;stroke-width:1" />
+    </g>
+    <g id="circle1" (click)="clickCircle(1, $event)" (mousedown)="mousedown(1, $event)" (mouseup)="mouseup(1)">
+      <circle [attr.cx]="circle1Xcoor" [attr.cy]="circle1Ycoor" [attr.r]="circleRadius" style="fill: white" />
+    </g>
+    <g id="circle2" (click)="clickCircle(2, $event)" (mousedown)="mousedown(2, $event)" (mouseup)="mouseup(2)">
+      <circle [attr.cx]="circle2Xcoor" [attr.cy]="circle2Ycoor" [attr.r]="circleRadius" style="fill: white" />
+    </g>
+    <g id="circle3" (click)="clickCircle(3, $event)" (mousedown)="mousedown(3, $event)" (mouseup)="mouseup(3)">
+      <circle [attr.cx]="circle3Xcoor" [attr.cy]="circle3Ycoor" [attr.r]="circleRadius" style="fill: white" />
+    </g>
+  </svg>
+</div>
