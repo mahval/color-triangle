@@ -23,6 +23,8 @@ export class TriangleDisplayComponent implements OnInit {
   circle3Xcoor = 750;
   circle3Ycoor = 750;
   circle3Color = '#034fff'; // Blue
+  circleCenterXcoor = 750;
+  circleCenterYcoor = 750;
   circleRadius = 15;
 
   trianglePoints = this.circle1Xcoor + ',' + this.circle1Ycoor + ',' + this.circle2Xcoor + ',' + this.circle2Ycoor + ',' + this.circle3Xcoor + ',' + this.circle3Ycoor
@@ -37,9 +39,9 @@ export class TriangleDisplayComponent implements OnInit {
       if (!this.dragging) {
         return;
       }
-
       this.selectedCircle.setAttribute("cx", evt.clientX);
       this.selectedCircle.setAttribute("cy", evt.clientY);
+      this.findCenterPointOfTriangle();
       let pointsArray = this.triangle.getAttribute("points").split(' ');
       pointsArray[this.selectedCircleId - 1] = evt.clientX + ',' + evt.clientY;
       let newPoints = pointsArray.join(" ");
@@ -97,6 +99,7 @@ export class TriangleDisplayComponent implements OnInit {
   }
 
   mousedown(id: number, evt) {
+    this.findCenterPointOfTriangle();
     this.mouseIsDown = true;
     this.dragging = true;
     this.selectedCircle = evt.target;
@@ -122,5 +125,19 @@ export class TriangleDisplayComponent implements OnInit {
     stop3.setAttribute("stop-color", this.circle3Color)
     console.log("stop1", stop1)
     // this.circle1.setAttribute("points", newPoints);
+  }
+
+  findCenterPointOfTriangle() {
+    let circle1 = document.getElementById("circle1");
+    let circle2 = document.getElementById("circle2");
+    let circle3 = document.getElementById("circle3");
+    // this.selectedCircle.setAttribute("cy", evt.clientY);
+    // console.log("---> ", this.selectedCircle.getAttribute("cx"))
+    // console.log("circle 1 attr: ", circle1.getAttribute('cx'))
+    // console.log("circle 1: --> ", circle1)
+    this.circleCenterXcoor = (+circle1.getAttribute('cx') + +circle2.getAttribute('cx') + +circle3.getAttribute('cx')) / 3;
+    this.circleCenterYcoor = (+circle1.getAttribute('cy') + +circle2.getAttribute('cy') + +circle3.getAttribute('cy')) / 3;
+    // console.log("CENTER: ", this.circleCenterXcoor + ',' + this.circleCenterYcoor)
+    return this.circleCenterXcoor + ',' + this.circleCenterYcoor;
   }
 }
