@@ -16,10 +16,13 @@ export class TriangleDisplayComponent implements OnInit {
 
   circle1Xcoor = 250;
   circle1Ycoor = 750;
+  circle1Color = '#ffea00'; // Yellow
   circle2Xcoor = 500;
   circle2Ycoor = 250;
+  circle2Color = '#ff0b03'; // Red
   circle3Xcoor = 750;
   circle3Ycoor = 750;
+  circle3Color = '#034fff'; // Blue
   circleRadius = 15;
 
   trianglePoints = this.circle1Xcoor + ',' + this.circle1Ycoor + ',' + this.circle2Xcoor + ',' + this.circle2Ycoor + ',' + this.circle3Xcoor + ',' + this.circle3Ycoor
@@ -77,13 +80,14 @@ export class TriangleDisplayComponent implements OnInit {
 
 
   ngOnInit() {
+    this.updateColors();
   }
 
   ngDoCheck() {
   }
 
   ngOnChanges() {
-
+    this.updateColors();
   }
 
   clickCircle(id: number, evt) {
@@ -103,5 +107,20 @@ export class TriangleDisplayComponent implements OnInit {
   mouseup(id: number) {
     this.mouseIsDown = false;
     this.selectedCircle = null;
+  }
+
+  updateColors() {
+    console.log("updating colors")
+    let stop1 = document.getElementById("stop1");
+    let stop2 = document.getElementById("stop2");
+    let stop3 = document.getElementById("stop3");
+    console.log("stop1", stop1)
+    console.log("stop2", stop2)
+    console.log("stop3", stop3)
+    stop1.setAttribute("stop-color", this.circle1Color)
+    stop2.setAttribute("stop-color", this.circle2Color)
+    stop3.setAttribute("stop-color", this.circle3Color)
+    console.log("stop1", stop1)
+    // this.circle1.setAttribute("points", newPoints);
   }
 }
