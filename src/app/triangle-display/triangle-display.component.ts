@@ -40,6 +40,8 @@ export class TriangleDisplayComponent implements OnInit {
       if (!this.dragging) {
         return;
       }
+      this.setCircleCoordinates();
+
       this.selectedCircle.setAttribute("cx", evt.clientX);
       this.selectedCircle.setAttribute("cy", evt.clientY);
       this.setCenterPointOfTriangle();
@@ -121,6 +123,15 @@ export class TriangleDisplayComponent implements OnInit {
     stop1.setAttribute("stop-color", this.circle1Color)
     stop2.setAttribute("stop-color", this.circle2Color)
     stop3.setAttribute("stop-color", this.circle3Color)
+  }
+
+  setCircleCoordinates() {
+    this.circle1Xcoor = +document.getElementById("circle1").getAttribute('cx');
+    this.circle1Ycoor = +document.getElementById("circle1").getAttribute('cy');
+    this.circle2Xcoor = +document.getElementById("circle2").getAttribute('cx');
+    this.circle2Ycoor = +document.getElementById("circle2").getAttribute('cy');
+    this.circle3Xcoor = +document.getElementById("circle3").getAttribute('cx');
+    this.circle3Ycoor = +document.getElementById("circle3").getAttribute('cy');
   }
 
   setCenterPointOfTriangle() {
