@@ -14,16 +14,16 @@
         <polygon id="triangle" points="250,750 500,250 750,750" fill="url(#grad)" style="stroke:black;stroke-width:1" />
       </g>
       <g (click)="clickCircle(1, $event)" (mousedown)="mousedown(1, $event)" (mouseup)="mouseup(1)">
-        <circle id="circle1" [attr.cx]="circle1Xcoor" [attr.cy]="circle1Ycoor" [attr.r]="circleRadius" [attr.fill]="circle1Color" />
+        <circle class="grabbable" id="circle1" [attr.cx]="circle1Xcoor" [attr.cy]="circle1Ycoor" [attr.r]="circleRadius" [attr.fill]="circle1Color" />
       </g>
       <g (click)="clickCircle(2, $event)" (mousedown)="mousedown(2, $event)" (mouseup)="mouseup(2)">
-        <circle id="circle2" [attr.cx]="circle2Xcoor" [attr.cy]="circle2Ycoor" [attr.r]="circleRadius" [attr.fill]="circle2Color" />
+        <circle class="grabbable" id="circle2" [attr.cx]="circle2Xcoor" [attr.cy]="circle2Ycoor" [attr.r]="circleRadius" [attr.fill]="circle2Color" />
       </g>
       <g (click)="clickCircle(3, $event)" (mousedown)="mousedown(3, $event)" (mouseup)="mouseup(3)">
-        <circle id="circle3" [attr.cx]="circle3Xcoor" [attr.cy]="circle3Ycoor" [attr.r]="circleRadius" [attr.fill]="circle3Color" />
+        <circle class="grabbable" id="circle3" [attr.cx]="circle3Xcoor" [attr.cy]="circle3Ycoor" [attr.r]="circleRadius" [attr.fill]="circle3Color" />
       </g>
       <g id="circleCenter" (click)="clickCircle(3, $event)" (mousedown)="mousedown(3, $event)" (mouseup)="mouseup(3)">
-        <circle [attr.cx]="circleCenterXcoor" [attr.cy]="circleCenterYcoor" [attr.r]="circleRadius" fill="white" />
+        <circle id="circleCenter" [attr.cx]="circleCenterXcoor" [attr.cy]="circleCenterYcoor" [attr.r]="circleCenterRadius" fill="white" fill-opacity="0.3" />
       </g>
     </svg>
 

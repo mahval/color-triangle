@@ -1,5 +1,6 @@
 svg {
-    g#circle1:hover, g#circle2:hover, g#circle3:hover {cursor: pointer;}
+    .grabbable {cursor: grab;}
+    .grabbing {cursor: grabbing;}
     polygon {
         fill: url('#fade1');
     }

@@ -26,6 +26,7 @@ export class TriangleDisplayComponent implements OnInit {
   circleCenterXcoor = 750;
   circleCenterYcoor = 750;
   circleRadius = 15;
+  circleCenterRadius = 5;
 
   trianglePoints = this.circle1Xcoor + ',' + this.circle1Ycoor + ',' + this.circle2Xcoor + ',' + this.circle2Ycoor + ',' + this.circle3Xcoor + ',' + this.circle3Ycoor
 
@@ -41,7 +42,7 @@ export class TriangleDisplayComponent implements OnInit {
       }
       this.selectedCircle.setAttribute("cx", evt.clientX);
       this.selectedCircle.setAttribute("cy", evt.clientY);
-      this.findCenterPointOfTriangle();
+      this.setCenterPointOfTriangle();
       let pointsArray = this.triangle.getAttribute("points").split(' ');
       pointsArray[this.selectedCircleId - 1] = evt.clientX + ',' + evt.clientY;
       let newPoints = pointsArray.join(" ");
@@ -83,6 +84,7 @@ export class TriangleDisplayComponent implements OnInit {
 
   ngOnInit() {
     this.updateColors();
+    this.setCenterPointOfTriangle();
   }
 
   ngDoCheck() {
@@ -99,7 +101,6 @@ export class TriangleDisplayComponent implements OnInit {
   }
 
   mousedown(id: number, evt) {
-    this.findCenterPointOfTriangle();
     this.mouseIsDown = true;
     this.dragging = true;
     this.selectedCircle = evt.target;
@@ -113,31 +114,25 @@ export class TriangleDisplayComponent implements OnInit {
   }
 
   updateColors() {
-    console.log("updating colors")
     let stop1 = document.getElementById("stop1");
     let stop2 = document.getElementById("stop2");
     let stop3 = document.getElementById("stop3");
-    console.log("stop1", stop1)
-    console.log("stop2", stop2)
-    console.log("stop3", stop3)
     stop1.setAttribute("stop-color", this.circle1Color)
     stop2.setAttribute("stop-color", this.circle2Color)
     stop3.setAttribute("stop-color", this.circle3Color)
-    console.log("stop1", stop1)
-    // this.circle1.setAttribute("points", newPoints);
   }
 
-  findCenterPointOfTriangle() {
+  setCenterPointOfTriangle() {
     let circle1 = document.getElementById("circle1");
     let circle2 = document.getElementById("circle2");
     let circle3 = document.getElementById("circle3");
-    // this.selectedCircle.setAttribute("cy", evt.clientY);
-    // console.log("---> ", this.selectedCircle.getAttribute("cx"))
-    // console.log("circle 1 attr: ", circle1.getAttribute('cx'))
-    // console.log("circle 1: --> ", circle1)
-    this.circleCenterXcoor = (+circle1.getAttribute('cx') + +circle2.getAttribute('cx') + +circle3.getAttribute('cx')) / 3;
-    this.circleCenterYcoor = (+circle1.getAttribute('cy') + +circle2.getAttribute('cy') + +circle3.getAttribute('cy')) / 3;
-    // console.log("CENTER: ", this.circleCenterXcoor + ',' + this.circleCenterYcoor)
+    if (+circle1.getAttribute('cx') === 0) {
+      this.circleCenterXcoor = (+this.circle1Xcoor + +this.circle2Xcoor + +this.circle3Xcoor) / 3;
+      this.circleCenterYcoor = (+this.circle1Ycoor + +this.circle2Ycoor + +this.circle3Ycoor) / 3;
+    } else {
+      this.circleCenterXcoor = (+circle1.getAttribute('cx') + +circle2.getAttribute('cx') + +circle3.getAttribute('cx')) / 3;
+      this.circleCenterYcoor = (+circle1.getAttribute('cy') + +circle2.getAttribute('cy') + +circle3.getAttribute('cy')) / 3;
+    }
     return this.circleCenterXcoor + ',' + this.circleCenterYcoor;
   }
 }
