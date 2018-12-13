@@ -11,48 +11,62 @@
   <div>
     <svg height="1000" width="1000">
       <defs>
-        <linearGradient id="fade0">
-          <stop id="stop1" offset="0" [attr.stop-color]="circle1Color" />
-          <stop id="stop2" offset="0.5" [attr.stop-color]="circle2Color" />
-          <stop id="stop3" offset="1" [attr.stop-color]="circle3Color" />
+        <linearGradient id="fade1" [attr.x1]="circle1Xcoor" [attr.x2]="circleCenterXcoor" [attr.y1]="circle1Ycoor" [attr.y2]="circleCenterYcoor">
+          <stop id="stop11" offset="0%" [attr.stop-color]="circle1Color"  stop-opacity="1"/>
+          <stop id="stop12" offset="100%" stop-color="#000000"  stop-opacity="0"/>
         </linearGradient>
-        <radialGradient id="fade1" [attr.cx]="(circle1Xcoor/10) + '%'" [attr.cy]="(circle1Ycoor/10) + '%'" [attr.fx]="(circle1Xcoor/10) + '%'"
+        <linearGradient id="fade2" [attr.x1]="circle2Xcoor" [attr.x2]="circleCenterXcoor" [attr.y1]="circle2Ycoor" [attr.y2]="circleCenterYcoor">
+          <stop id="stop21" offset="0%" [attr.stop-color]="circle2Color"  stop-opacity="1"/>
+          <stop id="stop22" offset="100%" stop-color="#000000"  stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="fade3" [attr.x1]="circle3Xcoor" [attr.x2]="circleCenterXcoor" [attr.y1]="circle3Ycoor" [attr.y2]="circleCenterYcoor">
+          <stop id="stop31" offset="0%" [attr.stop-color]="circle3Color"  stop-opacity="1"/>
+          <stop id="stop32" offset="100%" stop-color="#000000"  stop-opacity="0"/>
+        </linearGradient>
+
+
+        <radialGradient id="radfade1" [attr.cx]="(circle1Xcoor/10) + '%'" [attr.cy]="(circle1Ycoor/10) + '%'" [attr.fx]="(circle1Xcoor/10) + '%'"
           [attr.fy]="(circle1Ycoor/10) + '%'" r="50%">
-          <stop id="stop11" offset="0%" [attr.stop-color]="circle1Color" stop-opacity="1" />
-          <stop id="stop12" offset="100%" [attr.stop-color]="circle1Color" stop-opacity="0" />
+          <stop id="radstop11" offset="0%" [attr.stop-color]="circle1Color" stop-opacity="1" />
+          <stop id="radstop12" offset="100%" [attr.stop-color]="circle1Color" stop-opacity="0" />
           <!-- <stop id="stop3"/> -->
         </radialGradient>
-        <radialGradient id="fade2" [attr.cx]="(circle2Xcoor/10) + '%'" [attr.cy]="(circle2Ycoor/10) + '%'" [attr.fx]="(circle2Xcoor/10) + '%'"
+        <radialGradient id="radfade2" [attr.cx]="(circle2Xcoor/10) + '%'" [attr.cy]="(circle2Ycoor/10) + '%'" [attr.fx]="(circle2Xcoor/10) + '%'"
           [attr.fy]="(circle2Ycoor/10) + '%'" r="50%">
-          <stop id="stop21" offset="0%" [attr.stop-color]="circle2Color" stop-opacity="1" />
-          <stop id="stop22" offset="100%" [attr.stop-color]="circle2Color" stop-opacity="0" />
+          <stop id="radstop21" offset="0%" [attr.stop-color]="circle2Color" stop-opacity="1" />
+          <stop id="radstop22" offset="100%" [attr.stop-color]="circle2Color" stop-opacity="0" />
           <!-- <stop id="stop3"/> -->
         </radialGradient>
-        <radialGradient id="fade3" [attr.cx]="(circle3Xcoor/10) + '%'" [attr.cy]="(circle3Ycoor/10) + '%'" [attr.fx]="(circle3Xcoor/10) + '%'"
+        <radialGradient id="radfade3" [attr.cx]="(circle3Xcoor/10) + '%'" [attr.cy]="(circle3Ycoor/10) + '%'" [attr.fx]="(circle3Xcoor/10) + '%'"
           [attr.fy]="(circle3Ycoor/10) + '%'" r="50%">
-          <stop id="stop31" offset="0%" [attr.stop-color]="circle3Color" stop-opacity="1" />
-          <stop id="stop32" offset="100%" [attr.stop-color]="circle3Color" stop-opacity="0" />
+          <stop id="radstop31" offset="0%" [attr.stop-color]="circle3Color" stop-opacity="1" />
+          <stop id="radstop32" offset="100%" [attr.stop-color]="circle3Color" stop-opacity="0" />
           <!-- <stop id="stop3"/> -->
         </radialGradient>
 
+
         <filter id="blend-it" x="0%" y="0%" width="100%" height="100%">
-          <feImage xlink:href="#myrect1" result="c1"/>
-          <feImage xlink:href="#myrect2" result="c2"/>
-          <feImage xlink:href="#myrect3" result="c3"/>
+          <feImage xlink:href="#myrect1" result="c1" />
+          <feImage xlink:href="#myrect2" result="c2" />
+          <feImage xlink:href="#myrect3" result="c3" />
           <feBlend in="c1" in2="c2" in3="c3" mode="multiply" result="blendedGrad" />
           <feComposite in="blendedGrad" in2="SourceGraphic" operator="in" />
         </filter>
 
         <clipPath id="triangleView">
-            <polygon [attr.points]="this.circle1Xcoor + ',' + this.circle1Ycoor + ',' + this.circle2Xcoor + ',' + this.circle2Ycoor + ',' + this.circle3Xcoor + ',' + this.circle3Ycoor" fill="#FFFFFF" />            
+          <polygon [attr.points]="this.circle1Xcoor + ',' + this.circle1Ycoor + ',' + this.circle2Xcoor + ',' + this.circle2Ycoor + ',' + this.circle3Xcoor + ',' + this.circle3Ycoor"
+            fill="#FFFFFF" />
         </clipPath>
       </defs>
 
+
+
       <rect id="myrect" height="1000" width="1000" style="fill:lightblue; stroke-width:3;stroke:rgb(0,0,0)" />
 
-      <rect id="myrect1" x="0" y="0" height="1000" width="1000" fill="url(#fade1)" clip-path="url(#triangleView)"/>
-      <rect id="myrect2" x="0" y="0" height="1000" width="1000" fill="url(#fade2)" clip-path="url(#triangleView)" />
-      <rect id="myrect3" x="0" y="0" height="1000" width="1000" fill="url(#fade3)" clip-path="url(#triangleView)" />
+      <!-- Set #radfade or #fade for radial or linear -->
+      <rect id="myrect1" x="0" y="0" [attr.height]="1000" [attr.width]="1000" fill="url(#radfade1)" clip-path="url(#triangleView)" />
+      <rect id="myrect2" x="0" y="0" [attr.height]="1000" [attr.width]="1000" fill="url(#radfade2)" clip-path="url(#triangleView)" />
+      <rect id="myrect3" x="0" y="0" [attr.height]="1000" [attr.width]="1000" fill="url(#radfade3)" clip-path="url(#triangleView)" />
 
       <g (click)="clickTriangle()" (mousedown)="mousedown(0, $event)">
         <polygon id="triangle" points="250,750 500,250 750,750" filter="url(#blend-it)" style="stroke:black;stroke-width:1" />

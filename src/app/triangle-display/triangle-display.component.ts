@@ -117,9 +117,9 @@ export class TriangleDisplayComponent implements OnInit {
   }
 
   updateColors() {
-    let stop1 = document.getElementById("stop1");
-    let stop2 = document.getElementById("stop2");
-    let stop3 = document.getElementById("stop3");
+    let stop1 = document.getElementById("stop11");
+    let stop2 = document.getElementById("stop21");
+    let stop3 = document.getElementById("stop31");
     stop1.setAttribute("stop-color", this.circle1Color)
     stop2.setAttribute("stop-color", this.circle2Color)
     stop3.setAttribute("stop-color", this.circle3Color)
@@ -146,5 +146,17 @@ export class TriangleDisplayComponent implements OnInit {
       this.circleCenterYcoor = (+circle1.getAttribute('cy') + +circle2.getAttribute('cy') + +circle3.getAttribute('cy')) / 3;
     }
     return this.circleCenterXcoor + ',' + this.circleCenterYcoor;
+  }
+
+  getTriangleHeight() {
+    let minY = Math.min(+this.circle1Ycoor,+this.circle2Ycoor,+this.circle3Ycoor);
+    let maxY = Math.max(+this.circle1Ycoor,+this.circle2Ycoor,+this.circle3Ycoor);
+    return maxY - minY;
+  }
+
+  getTriangleWidth() {
+    let minX = Math.min(+this.circle1Xcoor,+this.circle2Xcoor,+this.circle3Xcoor);
+    let maxX = Math.max(+this.circle1Xcoor,+this.circle2Xcoor,+this.circle3Xcoor);
+    return maxX - minX;
   }
 }
