@@ -43,6 +43,7 @@ export class TriangleDisplayComponent implements OnInit {
       this.selectedCircle.setAttribute("cx", evt.clientX);
       this.selectedCircle.setAttribute("cy", evt.clientY);
       this.setCenterPointOfTriangle();
+      if (!this.triangle) this.triangle = document.getElementById("triangle");
       let pointsArray = this.triangle.getAttribute("points").split(' ');
       pointsArray[this.selectedCircleId - 1] = evt.clientX + ',' + evt.clientY;
       let newPoints = pointsArray.join(" ");
